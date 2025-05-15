@@ -22,7 +22,11 @@ const NoticiasMuseos = () => {
 
     fetch(`/api/noticias?lang=${apiLang}`)
       .then((res) => res.json())
-      .then((data) => setNoticias(data.articles.slice(0, 7)));
+      .then((data) => setNoticias(data))
+      .catch((err) => {
+        console.error("Error al cargar noticias:", err);
+        setNoticias([]); // vaciar en caso de error
+      });
   }, [i18n.language]);
 
   useEffect(() => {
