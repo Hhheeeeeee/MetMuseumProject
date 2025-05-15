@@ -20,9 +20,7 @@ const NoticiasMuseos = () => {
     const idiomaActual = i18n.language;
     const apiLang = langMap[idiomaActual] || "es";
 
-    fetch(
-      `https://newsapi.org/v2/everything?qInTitle=(museo%20OR%20museos)&language=${apiLang}&sortBy=publishedAt&apiKey=b0cad17bd70c40949972c75bcf54228e`
-    )
+    fetch(`/api/noticias?lang=${apiLang}`)
       .then((res) => res.json())
       .then((data) => setNoticias(data.articles.slice(0, 7)));
   }, [i18n.language]);
